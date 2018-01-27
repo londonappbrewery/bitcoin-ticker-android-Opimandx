@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Member Variables:
     TextView mPriceTextView;
-    private String symbol;
-    private String price;
+    private String mFinalUrl;
 
 
     @Override
@@ -58,11 +57,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
                 Log.d("Bitcoin","  "+parent.getItemAtPosition(position));
-                  symbol =   (String) parent.getItemAtPosition(position);
 
+                mFinalUrl = BASE_URL+parent.getItemAtPosition(position);
 
-
-                   letsDoSomeNetworking(BASE_URL+symbol);
+                letsDoSomeNetworking(mFinalUrl);
             }
 
             @Override
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void letsDoSomeNetworking(String url) {
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(BASE_URL+symbol, new JsonHttpResponseHandler() {
+        client.get(mFinalUrl, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {

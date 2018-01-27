@@ -17,7 +17,7 @@ public class BitcoinDataModel {
         try {
             BitcoinDataModel bitcoinData = new BitcoinDataModel();
 
-            bitcoinData.mPrice = jsonObject.getString("bid");
+            bitcoinData.mPrice = jsonObject.getString("last");
             return bitcoinData;
         }catch (Exception e){
             e.printStackTrace();
